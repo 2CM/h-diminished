@@ -484,7 +484,7 @@ class CompilationUnit {
     } 
 }
 
-const consoleLog = console.log;
+var consoleLog = console.log;
 
 function stringifyILClass(c: ILClass) {
     let seen: any[] = [];
@@ -668,7 +668,7 @@ function lexicalDataToExpression(code: (TOKEN_TYPE | number | string)[]): Expres
     let entries: Entry[] = [{operands: [], operators: []}]
     let offset = 0;
 
-    console.log("c")
+    //console.log("c")
     printAnalysis(code);
 
     while(true) {
@@ -690,7 +690,7 @@ function lexicalDataToExpression(code: (TOKEN_TYPE | number | string)[]): Expres
         offset += 2;
     }
 
-    console.log(entries)
+    //console.log(entries)
 
     // console.log(operands, operators)
 
@@ -732,7 +732,7 @@ function lexicalDataToExpression(code: (TOKEN_TYPE | number | string)[]): Expres
 }
 
 function lexicalDataToELI(tokens: (TOKEN_TYPE | number | string)[]): Expression | Literal | Identifier {
-    printAnalysis(tokens);
+    //printAnalysis(tokens);
 
     if(tokens.length == 2) {
         if(tokens[0] == TOKEN_TYPE.IDENTIFIER) {
@@ -746,7 +746,7 @@ function lexicalDataToELI(tokens: (TOKEN_TYPE | number | string)[]): Expression 
 }
 
 function lexicalDataToBlock(tokens: (TOKEN_TYPE | number | string)[]): Block {
-    printAnalysis(tokens);
+    //printAnalysis(tokens);
     // let startTime = performance.now();
 
     //split properly
@@ -925,7 +925,7 @@ function lexicalDataToClass(tokens: (TOKEN_TYPE | number | string)[], start: num
         let initializer: Expression | Literal | Identifier | undefined;
         let lineOffset = 0;
 
-        printAnalysis(tokens.slice(offset))
+        //printAnalysis(tokens.slice(offset))
 
         if(
             tokens[offset + lineOffset] == TOKEN_TYPE.SEPERATOR &&
@@ -992,7 +992,7 @@ function lexicalDataToClass(tokens: (TOKEN_TYPE | number | string)[], start: num
         ) {
             lineOffset += 2;
         } else {
-            printAnalysis(tokens.slice(offset + lineOffset))
+            //printAnalysis(tokens.slice(offset + lineOffset))
             throw new Error("hreo");
         }
 
@@ -1061,7 +1061,7 @@ function lexicalDataToCompilationUnit(tokens: (TOKEN_TYPE | number | string)[]):
 
             unit.classes.push(lexicalDataToClass(tokens, offset));
 
-            printAnalysis(tokens.slice(offset, end));
+            //printAnalysis(tokens.slice(offset, end));
 
             offset = end;
         } else {
@@ -2479,53 +2479,53 @@ var class1 = new ILClass("Main");
         class1.methods.push(main);
 
 
-var code = `
-class Buh {
-    String[] buhs;
-    static Int32 a = 10 + 2;
-    static String b = Buh.a:ToString$();
-    static Int8[] c;
+// var code = `
+// class Buh {
+//     String[] buhs;
+//     static Int32 a = 10 + 2;
+//     static String b = Buh.a:ToString$();
+//     static Int8[] c;
 
-    static void cctor() {
-        Buh.c = 1;
-    }
+//     static void cctor() {
+//         Buh.c = 1;
+//     }
 
-    void ctor(String one, String two) {
-        this.buhs = String@2;
+//     void ctor(String one, String two) {
+//         this.buhs = String@2;
 
-        this.buhs#0 = one;
-        this.buhs#1 = two;
-    }
-}
+//         this.buhs#0 = one;
+//         this.buhs#1 = two;
+//     }
+// }
 
-class Main {
-    static Int32 b;
+// class Main {
+//     static Int32 b;
 
-    static void Main() {
-        Buh myBuh = Buh~("yeah", "no??");
+//     static void Main() {
+//         Buh myBuh = Buh~("yeah", "no??");
 
-        Console:WriteLine$(myBuh.buhs#0);
-        Console:WriteLine$(myBuh.buhs#1);
+//         Console:WriteLine$(myBuh.buhs#0);
+//         Console:WriteLine$(myBuh.buhs#1);
 
-        Console:WriteLine$(Buh.a);
-        Console:WriteLine$(Buh.b);
-        Console:WriteLine$(Buh.c);
-    }
-}
-`
+//         Console:WriteLine$(Buh.a);
+//         Console:WriteLine$(Buh.b);
+//         Console:WriteLine$(Buh.c);
+//     }
+// }
+// `
 
 //code print formatting <-----
 
-var tokenized = tokenize(code);
+// var tokenized = tokenize(code);
 
-var tree = lexicalDataToCompilationUnit(tokenized);
-    console.log(tree)
+// var tree = lexicalDataToCompilationUnit(tokenized);
+//     console.log(tree)
 
-var compiled = compilationUnitToIL(tree);
-    console.log(compiled)
+// var compiled = compilationUnitToIL(tree);
+//     console.log(compiled)
 
-var compiledInterpreter = new ILInterpreter(compiled);
-    compiledInterpreter.setup(256);
-    compiledInterpreter.run();
-    compiledInterpreter.print();
-    compiledInterpreter.memory.print(0, 64);
+// var compiledInterpreter = new ILInterpreter(compiled);
+//     compiledInterpreter.setup(256);
+//     compiledInterpreter.run();
+//     compiledInterpreter.print();
+//     compiledInterpreter.memory.print(0, 64);
