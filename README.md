@@ -14,6 +14,12 @@ its basically just c# but it doesnt have the following basic programming ideas
 - a good compiler error logging system
 - anything fancy at all
 - any helper functions (math library, array manipulation, type reflection)
+- you have to use a lot more symbols so the tokens -> tree stage is easier for me
+
+example of the last one:
+```
+Console:WriteLine$(Buh~("yeah", "no??").buhs#1);
+```
 
 it does some of the following really weird specific things out of laziness
 - numbers are processed in javascript
